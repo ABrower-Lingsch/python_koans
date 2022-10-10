@@ -32,37 +32,48 @@ class AboutTuples(Koan):
         count_of_three = (1, 2, 5)
 
         list_count = list(count_of_three)
+        # convert to list
         list_count.append("boom")
+        # adds new item
         count_of_three = tuple(list_count)
+        # convert back to tuple
 
-        self.assertEqual(__, count_of_three)
+        self.assertEqual((1, 2, 5, "boom"), count_of_three)
 
     def test_tuples_of_one_look_peculiar(self):
-        self.assertEqual(__, (1).__class__)
-        self.assertEqual(__, (1,).__class__)
-        self.assertEqual(__, ("I'm a tuple",).__class__)
-        self.assertEqual(__, ("Not a tuple").__class__)
+        self.assertEqual(int, (1).__class__)
+        # without the comma it's just an integer
+        self.assertEqual(tuple, (1,).__class__)
+        # with the comma it's a tuple
+        self.assertEqual(tuple, ("I'm a tuple",).__class__)
+        # with the comma it's a tuple
+        self.assertEqual(str, ("Not a tuple").__class__)
+        # without the comma it's a string
 
     def test_tuple_constructor_can_be_surprising(self):
-        self.assertEqual(__, tuple("Surprise!"))
+        self.assertEqual(('S','u','r','p','r','i','s','e','!'), tuple("Surprise!"))
+        # converts the string into a tuple, breaking it up by each char
 
     def test_creating_empty_tuples(self):
-        self.assertEqual(__ , ())
-        self.assertEqual(__ , tuple()) #Sometimes less confusing
+        self.assertEqual(tuple() , ())
+        self.assertEqual(() , tuple()) #Sometimes less confusing
 
     def test_tuples_can_be_embedded(self):
         lat = (37, 14, 6, 'N')
         lon = (115, 48, 40, 'W')
         place = ('Area 51', lat, lon)
-        self.assertEqual(__, place)
+        # tuples can be concatinated in tuples but not other forms like lists
+        self.assertEqual(('Area 51', (37, 14, 6, 'N'), (115, 48, 40, 'W')), place)
 
     def test_tuples_are_good_for_representing_records(self):
         locations = [
             ("Illuminati HQ", (38, 52, 15.56, 'N'), (77, 3, 21.46, 'W')),
             ("Stargate B", (41, 10, 43.92, 'N'), (1, 49, 34.29, 'W')),
         ]
-
+        # you can append a tuple to a list
         locations.append( ("Cthulu", (26, 40, 1, 'N'), (70, 45, 7, 'W')) )
 
-        self.assertEqual(__, locations[2][0])
-        self.assertEqual(__, locations[0][1][2])
+        self.assertEqual("Cthulu", locations[2][0])
+        # targets 3rd item in list and 1st item in tuple
+        self.assertEqual(15.56, locations[0][1][2])
+        # tagets 1st item in list, 2nd item in that tuple, and 3rd item within that next tuple
