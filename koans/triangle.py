@@ -17,9 +17,18 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
-    # DELETE 'PASS' AND WRITE THIS CODE
-    pass
+    if a == b == c:
+        return 'equilateral'
+        # all equal sides make an equalateral triangle
+    elif a == b or b == c or c == a:
+        return 'isosceles'
+        # two equal sides and one non-equal side makes an isosceles
+    return 'scalene'
+    # anthing else would be scalene
+    # source: basic geometry...
 
 # Error class used in part 2.  No need to change this code.
+
+
 class TriangleError(Exception):
     pass
